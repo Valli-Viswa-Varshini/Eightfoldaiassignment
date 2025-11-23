@@ -43,7 +43,16 @@ function App() {
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
+      // Explicitly define the backend URL
+      // If running on localhost (port 5173), look for backend at localhost:8000
+      // Otherwise, assume we are on Render and look for the Render backend URL
+      const API_URL = window.location.port === '5173'
+        ? 'http://localhost:8000'
+        : 'https://eightfoldaiassignment.onrender.com';
+
+      console.log("Connecting to API at:", API_URL);
+
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
