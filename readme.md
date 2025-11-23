@@ -9,68 +9,6 @@ An intelligent, conversational AI research assistant that generates strategic ac
 
 ## 🌟 Key Features
 
-- 💬 **Natural Conversation**: Chat naturally - no forms! Just say "Tell me about Tesla"
-- 🎤 **Voice Interaction**: Speak your questions and hear responses (Web Speech API)
-- 🔗 **Source Citations**: View all URLs where information was gathered from
-- ⏱️ **Real-Time Updates**: See progress as the agent researches ("📊 Researching company overview...")
-- ⚠️ **Conflict Detection**: Agent alerts you if it finds contradictory information
-- 🔄 **Agentic Workflow**: Cyclic graph (Research → Critique → Synthesize) for high-quality output
-- 🌐 **Real-Time Web Search**: Uses Tavily API to fetch live data about companies
-- 🧠 **Conversational Intelligence**: Asks clarifying questions, handles ambiguity, stays on topic
-- ✏️ **Editable Plans**: Users can refine and update specific sections through chat or direct editing
-- 🎨 **Premium UI**: Dark-mode React frontend with split-screen chat and plan view
-
-## 🛠️ Tech Stack
-
-- **Backend**: Python, FastAPI, LangGraph, LangChain, Google Gemini
-- **Frontend**: React, Vite, Tailwind CSS, Framer Motion
-- **Search**: Tavily API / DuckDuckGo
-- **AI Models**: Google Gemini 2.5 Flash
-- **Voice**: Web Speech API (Browser-native)
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Python 3.9+
-- Node.js 18+
-- API Keys: [Google Gemini](https://ai.google.dev/), [Tavily](https://tavily.com/)
-
-### Installation
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/YOUR_USERNAME/ai-research-agent.git
-cd ai-research-agent
-```
-
-2. **Install Python dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-3. **Install Node dependencies**
-```bash
-cd frontend
-npm install
-cd ..
-```
-
-4. **Configure API Keys**
-Create a `.env` file in the root directory:
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
-TAVILY_API_KEY=your_tavily_api_key_here
-```
-
-### Running Locally
-
-**Terminal 1: Backend**
-```bash
-python server.py
-```
-*Backend runs at `http://localhost:8000`*
-
-**Terminal 2: Frontend**
 ```bash
 cd frontend
 npm run dev
@@ -219,7 +157,7 @@ MIT License - see LICENSE file for details
 
 ## 🙏 Acknowledgments
 
-- Built for the **Eightfold.ai AI Agent Assignment (Nov 2024)**
+- Built for the **Eightfold.ai AI Agent Assignment (Nov 2025)**
 - Powered by Google Gemini, LangGraph, and Tavily
 - UI inspired by modern conversational AI interfaces
 
