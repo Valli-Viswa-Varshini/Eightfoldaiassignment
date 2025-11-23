@@ -43,14 +43,10 @@ function App() {
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
 
     try {
-      // Explicitly define the backend URL
-      // If running on localhost (port 5173), look for backend at localhost:8000
-      // Otherwise, assume we are on Render and look for the Render backend URL
-      const API_URL = window.location.port === '5173'
-        ? 'http://localhost:8000'
-        : 'https://eightfoldaiassignment.onrender.com';
+      // Use relative path - works automatically for both Render and Local (with proxy)
+      const API_URL = '';
 
-      console.log("Connecting to API at:", API_URL);
+      console.log("Connecting to API at:", `${API_URL}/api/chat`, "Version: FINAL_FIX");
 
       const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
