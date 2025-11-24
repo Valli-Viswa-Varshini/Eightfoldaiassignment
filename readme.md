@@ -1,166 +1,150 @@
 # 🤖 AI Company Research Agent
 
-An intelligent, conversational AI research assistant that generates strategic account plans for companies through natural dialogue. Built for the **Eightfold.ai AI Agent Assignment (Nov 2024)**.
+An intelligent conversational AI assistant that researches companies in real-time, synthesizes insights, and generates a structured Strategic Account Plan — through natural dialogue using chat + voice.
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.104+-green.svg)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-18+-61DAFB.svg)](https://reactjs.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-brightgreen.svg)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-Frontend-61DAFB.svg)](https://reactjs.org/)
+[![Gemini](https://img.shields.io/badge/LLM-Gemini-blueviolet)]()
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-## 🌟 Key Features
-
-```bash
-cd frontend
-npm run dev
-```
-*Frontend runs at `http://localhost:5173`*
-
-Open `http://localhost:5173` in your browser and start chatting!
-
-## 💬 Usage Examples
-
-- **Simple**: "Tell me about Google"
-- **Specific**: "Research Tesla's AI and autonomous driving strategy"
-- **Voice**: Click the 🎤 microphone button and speak
-- **Follow-up**: "Can you dig deeper into their risks?"
-- **Update**: "Update the opportunities section to focus on emerging markets"
-- **View Sources**: Click "X sources used" to see research URLs
-
-## 🎭 User Persona Demonstrations
-
-This agent handles diverse user types as required by the assignment:
-
-### 1. The Confused User ✅
-```
-User: "I need help with something"
-Agent: "I can help you research companies and generate strategic account plans. 
-       Which company are you interested in?"
-User: "Um, maybe something in tech?"
-Agent: "Could you tell me the specific company name? For example, Apple, Microsoft, or Google?"
-```
-
-### 2. The Efficient User ✅
-```
-User: "Research Salesforce"
-Agent: "Great! I'll research Salesforce for you. This will take a moment..."
-[Generates full plan in ~15 seconds with 20+ sources]
-```
-
-### 3. The Chatty User ✅
-```
-User: "Hey! How's your day going?"
-Agent: "I specialize in researching companies and creating strategic account plans. 
-       Which company would you like to learn about?"
-```
-
-### 4. The Edge Case User ✅
-```
-User: "Write me a poem"
-Agent: "I specialize in researching companies and creating strategic account plans. 
-       Could you tell me which company you'd like to learn about?"
-```
-
-## 🏗️ Architecture & Design Decisions
-
-### Why LangGraph?
-- **Agentic Loops**: Unlike simple LLM chains, LangGraph allows the agent to critique its own research and refine it
-- **State Management**: Clean way to track conversation history, research data, and plan sections
-- **Extensibility**: Easy to add new nodes (e.g., "Conflict Resolution" for contradictory data)
-
-### Why Conversational Interface?
-- **Evaluation Criteria**: The assignment prioritizes "Conversational Quality" over functionality
-- **User Experience**: Natural language is more accessible than forms
-- **Flexibility**: Handles ambiguous requests, follow-ups, and clarifications
-
-### Why Streaming?
-- **Real-Time Feedback**: Users see progress ("📊 Researching...", "🛍️ Analyzing...")
-- **Transparency**: Meets the requirement to "Provide updates during research"
-- **Engagement**: Keeps users informed during the 15-20 second research process
-
-### Why Tavily over DuckDuckGo?
-- **Quality**: Tavily is purpose-built for LLM research (returns structured, relevant data)
-- **Reliability**: More consistent results for company research
-- **Fallback**: DuckDuckGo is still available if Tavily API is unavailable
-
-## 📊 Requirements Alignment
-
-| Assignment Requirement | Implementation | Evidence |
-|------------------------|----------------|----------|
-| **Gather from multiple sources** | ✅ 4 parallel web searches + Tavily API | Shows "20 sources used" |
-| **Synthesize findings** | ✅ LLM-powered synthesis into 6 sections | Strategic Account Plan output |
-| **Provide updates during research** | ✅ 4 real-time progress messages + conflict detection | "📊 Researching...", "⚠️ Conflict found..." |
-| **Allow section updates** | ✅ Chat-based + UI-based editing | "Update the risks section" or click pencil icon |
-| **Chat interaction** | ✅ Full conversational interface | Natural language parsing, clarifying questions |
-| **Voice interaction** | ✅ Web Speech API | Microphone button + TTS responses |
-| **Conversational Quality** | ✅ Intent parsing, context awareness | Handles 4 user personas |
-| **Agentic Behaviour** | ✅ LangGraph cyclic workflow | Research → Critique → Synthesize loop |
-| **Technical Implementation** | ✅ FastAPI streaming, React state mgmt | Real-time event streaming |
-| **Intelligence & Adaptability** | ✅ Handles confused, efficient, chatty, edge-case users | Demonstrated in examples above |
-
-## 📁 Project Structure
-
-```
-ai-research-agent/
-├── server.py              # FastAPI backend with conversational logic
-├── agent.py               # LangGraph agent (Research → Critique → Synthesize)
-├── requirements.txt       # Python dependencies
-├── .env                   # API keys (not in Git)
-├── .env.example           # Example env file
-├── frontend/
-│   ├── src/
-│   │   ├── App.jsx        # React main component (chat UI + voice)
-│   │   ├── index.css      # Tailwind styles
-│   │   └── main.jsx       # React entry point
-│   ├── package.json       # Node dependencies
-│   └── vite.config.js     # Vite configuration
-├── README.md              # This file
-├── DEPLOYMENT.md          # Deployment guide for Render
-└── .gitignore             # Git ignore rules
-```
-
-## 🌐 Deployment
-
-See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions on deploying to Render (free hosting).
-
-**Quick Deploy to Render:**
-1. Push to GitHub
-2. Connect to Render
-3. Add environment variables (API keys)
-4. Deploy!
-
-## 🎥 Demo Video
-
-[Add your demo video link here after recording]
-
-**Demo Script (10 minutes):**
-1. Confused User (0:00-2:00)
-2. Efficient User (2:00-4:00)
-3. Voice Feature (4:00-6:00)
-4. Edit Feature (6:00-8:00)
-5. Edge Cases (8:00-10:00)
-
-## 📝 Future Enhancements
-
-- [ ] Multi-turn research refinement ("Dig deeper into X")
-- [ ] Export to PDF/DOCX
-- [ ] Comparison mode (compare 2 companies side-by-side)
-- [ ] Multi-language support
-- [ ] Custom research templates
-
-## 🤝 Contributing
-
-This is a submission for the Eightfold.ai assignment. For questions or feedback, please contact [your email].
-
-## 📄 License
-
-MIT License - see LICENSE file for details
-
-## 🙏 Acknowledgments
-
-- Built for the **Eightfold.ai AI Agent Assignment (Nov 2025)**
-- Powered by Google Gemini, LangGraph, and Tavily
-- UI inspired by modern conversational AI interfaces
 
 ---
 
-**Made with ❤️ for Eightfold.ai**
+## ✨ Key Capabilities
+
+✔ Natural conversation understanding  
+✔ Voice-enabled research + responses  
+✔ Real-time business research from the web  
+✔ Organized strategic account plan with 6 sections  
+✔ Section-level editing using follow-up instructions  
+✔ Clarification guidance for confused users  
+✔ Safety guardrails against invalid or unrelated requests  
+✔ Live progress streaming during research
+
+---
+
+## 📌 System Architecture
+
+📍 *Architecture Diagram*  
+<img width="1014" height="1614" alt="Untitled diagram-2025-11-24-033751" src="https://github.com/user-attachments/assets/7675602b-0b8e-4f50-a535-09260d63005e" />
+
+
+### Architecture Summary
+
+| Component | Purpose |
+|----------|---------|
+| React UI | Chat + voice interface |
+| FastAPI Server | Intent parsing + conversation management |
+| LangGraph Agent | Research → Critique → Synthesis loop |
+| Web Search | Online data retrieval |
+| Streaming Events | Live progress while researching |
+| Voice Interface | Web Speech API (browser native) |
+
+🧠 Research Loop:
+
+1️⃣ Understand user intent  
+2️⃣ Search multiple high-quality sources  
+3️⃣ Validate data (detect gaps / conflicts)  
+4️⃣ Synthesize final structured business plan  
+5️⃣ Allow follow-up modifications anytime  
+
+---
+
+## 🗣️ Example User Commands
+
+- “Tell me about Tesla”
+- “Update the risks to focus on privacy concerns”
+- “I don’t know… suggest a major AI company?”
+- “Research Netflix and recommend actions for subscriber retention”
+
+🎤 Voice Input also supported — click the Mic button!
+
+---
+
+## 👥 User Persona Handling
+
+| User Type | Bot Behavior |
+|----------|--------------|
+| Confused user | Suggests companies + asks clarification |
+| Efficient user | Immediately performs full research |
+| Chatty user | Redirects politely back to task |
+| Edge-case user | Refuses unsupported actions safely |
+
+---
+
+---
+
+## 🚀 Local Development
+
+Clone the repository:
+
+```bash
+git clone <repo-url>
+cd ai-research-agent
+pip install -r requirements.txt
+uvicorn server:app --reload
+```
+
+## Then start the frontend:
+
+cd frontend
+npm install
+npm run dev
+
+
+➡ Visit UI: http://localhost:5173
+
+## 🌍 Live Deployment
+
+Public Render Deployment:
+🔗 [https://company-account-planner-ai.onrender.com/](https://company-account-planner-ai.onrender.com/)
+
+⚠️ Note: Render Free plans may take 15–30 sec to “Wake Up” if idle
+
+
+## 🎬 Demo Video
+
+📹 Full Project Walkthrough (Voice + Screen Recording):
+🔗 [https://drive.google.com/file/d/1io0Krqgh1MM0QlENgNqqd7iw5xChC70W/view?usp=sharing](https://drive.google.com/file/d/1io0Krqgh1MM0QlENgNqqd7iw5xChC70W/view?usp=sharing)
+
+## 📂 Project Structure
+
+```text
+ai-research-agent/
+├── agent.py            # LangGraph research workflow (autonomous loop)
+├── server.py           # FastAPI backend (streaming API)
+├── requirements.txt    # Python dependencies
+├── frontend/           # React UI (chat + voice)
+│   ├── src/App.jsx     # Main chat+voice component
+│   ├── src/index.css   # Styling
+│   └── src/main.jsx    # Frontend entry point
+└── README.md           # Documentation
+
+```
+
+## 📈 Technical Highlights
+✔ Uses Gemini for factual reasoning + structured synthesis  
+✔ LangGraph autonomous cycle → Research → Critique → Synthesize  
+✔ Streaming keeps users engaged during plan generation  
+✔ State memory → Allows follow-up edits to specific sections  
+✔ Voice support via Web Speech API 🎤  
+✔ Clean frontend-backend separation for maintainability  
+
+## 🚧 Future Improvements
+
+Multi-turn refinement (“dig deeper into AI strategy”)
+
+Export to PDF / PowerPoint
+
+Compare companies side-by-side
+
+Personalized recommendations based on context
+
+Multi-language conversation support
+
+## 📜 License
+
+Open-source under MIT License
+Free to modify and extend 💡
+
+✨ Built with passion to make enterprise research intelligent & interactive!
